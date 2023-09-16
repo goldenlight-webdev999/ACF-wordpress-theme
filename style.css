@@ -2044,39 +2044,39 @@ input:checked + .toggle-bg {
 }
 
 .bg-\[url\(\'\.\.\/images\/contact-bg\.png\'\)\] {
-  background-image: url('../images/contact-bg.png');
+  background-image: url('./assets/images/contact-bg.png');
 }
 
 .bg-\[url\(\'\.\.\/images\/contact-shadow\.png\'\)\] {
-  background-image: url('../images/contact-shadow.png');
+  background-image: url('./assets/images/contact-shadow.png');
 }
 
 .bg-\[url\(\'\.\.\/images\/feature-box-blur\.png\'\)\] {
-  background-image: url('../images/feature-box-blur.png');
+  background-image: url('./assets/images/feature-box-blur.png');
 }
 
 .bg-\[url\(\'\.\.\/images\/feature-box\.png\'\)\] {
-  background-image: url('../images/feature-box.png');
+  background-image: url('./assets/images/feature-box.png');
 }
 
 .bg-\[url\(\'\.\.\/images\/hero-bg\.png\'\)\] {
-  background-image: url('../images/hero-bg.png');
+  background-image: url('./assets/images/hero-bg.png');
 }
 
 .bg-\[url\(\'\.\.\/images\/number-bg\.png\'\)\] {
-  background-image: url('../images/number-bg.png');
+  background-image: url('./assets/images/number-bg.png');
 }
 
 .bg-\[url\(\'\.\.\/images\/shadow-1\.png\'\)\] {
-  background-image: url('../images/shadow-1.png');
+  background-image: url('./assets/images/shadow-1.png');
 }
 
 .bg-\[url\(\'\.\.\/images\/slider-bg\.png\'\)\] {
-  background-image: url('../images/slider-bg.png');
+  background-image: url('./assets/images/slider-bg.png');
 }
 
 .bg-\[url\(\'\.\.\/images\/solution-bg\.png\'\)\] {
-  background-image: url('../images/solution-bg.png');
+  background-image: url('./assets/images/solution-bg.png');
 }
 
 .bg-bg-clr {
@@ -2524,7 +2524,7 @@ input:checked + .toggle-bg {
 }
 
 .leading-\[\] {
-  line-height: ;
+  /* line-height: ; */
 }
 
 .text-black {
@@ -2983,7 +2983,7 @@ input:checked + .toggle-bg {
 
 .after\:bg-\[url\(\'\.\.\/images\/gradient\.svg\'\)\]::after {
   content: var(--tw-content);
-  background-image: url('../images/gradient.svg');
+  background-image: url('./assets/images/gradient.svg');
 }
 
 .after\:bg-cover::after {
@@ -3925,7 +3925,7 @@ input:checked + .toggle-bg {
   }
 
   .lg\:bg-\[url\(\'\.\.\/images\/bg-gradient\.png\'\)\] {
-    background-image: url('../images/bg-gradient.png');
+    background-image: url('./assets/images/bg-gradient.png');
   }
 
   .lg\:p-5 {
