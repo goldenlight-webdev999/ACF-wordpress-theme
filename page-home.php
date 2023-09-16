@@ -518,14 +518,15 @@
         </div>
       </div>
     </div>
-  </section>
+  </section>  
   
   <section class="">
+    <?php $count =0; ?>
     <div class="max-w-[1300px] md:px-[30px] px-[15px] mx-auto">
       <div
         class="md:flex grid sm:grid-cols-2 gap-[30px] items-center sm:p-[50px] p-[30px] bg-[url('../images/number-bg.png')] rounded-[7px] bg-cover bg-no-repeat ">
-        <?php if( have_rows('number_banner') ): while ( have_rows('number_banner') ) : the_row(); ?>
-          <div class="xl:mr-32 lg:mr-20 md:mr-10">
+        <?php if( have_rows('number_banner') ): while ( have_rows('number_banner') ) : the_row(); $count++; ?>
+          <div class="<?php echo ($count<4) ? "xl:mr-32 lg:mr-20 md:mr-10" : $count;?>">
             <h4
               class="text-white lg:text-4xl md:text-[34px] text-[32px] leading-[46.8px] font-plus-jakarta font-bold">
               <?php the_sub_field('number'); ?>
@@ -538,175 +539,121 @@
       </div>
     </div>
   </section>
+
+  <?php
+    $real_time_notifications = get_field('real-time_notifications');
+  ?>
   <section class="xl:pt-[120px] pt-20 lg:pb-[105px] pb-20">
     <div class="max-w-[1300px] md:px-[30px] px-[15px] mx-auto">
       <div class="flex flex-wrap">
         <div class="lg:w-1/2 w-full ">
-            <img src="images/alert-img.png" class="w-full object-cover object-center h-full" alt="">
+            <img src="<?php echo $real_time_notifications['image']; ?>" class="w-full object-cover object-center h-full" alt="">
         </div>
         <div
           class="lg:w-1/2 w-full lg:bg-[url('../images/bg-gradient.png')] bg-blue-1000 xl:p-[50px] p-[30px] lg:mt-0 -mt-2.5 bg-no-repeat bg-cover">
           <h2
             class="text-white xl:text-[42px] lg:text-4xl sm:text-[38px] text-[34px] font-plus-jakarta font-bold sm:leading-[54.6px] leading-[1.3em]">
-            Real-time
-            notifications
-            and alerts</h2>
-          <p class="text-white font-inter text-base font-normal leading-[20.8px] mt-2.5">Nor again
-            is
-            there
-            anyone who loves or
-            pursues or desires to obtain
-            pain of itself, because it is pain, but because.</p>
+            <?php echo $real_time_notifications['title']; ?>
+          </h2>
+          <p class="text-white font-inter text-base font-normal leading-[20.8px] mt-2.5">
+            <?php echo $real_time_notifications['description']; ?>
+          </p>
           <ul class="mt-10 sm:mb-[60px] mb-5">
-            <li
-              class="text-white mb-5 font-inter text-base font-normal leading-[20.8px] flex items-center">
-              <span class="flex mr-2.5"><img src="images/tick-icon.svg" class="mr-2.5" alt=""></span>A
-              pain that
-              produces no resultant
-              pleasure.
-            </li>
-            <li
-              class="text-white mb-5 font-inter text-base font-normal leading-[20.8px] flex items-center">
-              <span class="flex mr-2.5"><img src="images/tick-icon.svg" class="mr-2.5"
-                alt=""></span>Except to obtain
-              some advantage
-              from it who has any right.
-            </li>
-            <li class="text-white font-inter text-base font-normal leading-[20.8px] flex items-center">
-              <span class="flex mr-2.5"><img src="images/tick-icon.svg" class="mr-2.5"
-                alt=""></span>pleasure
-              rationally encounter
-              consequences that.
-            </li>
+            <?php if( have_rows('real-time_notifications') ): while ( have_rows('real-time_notifications') ) : the_row(); ?>
+              <?php if( have_rows('item') ): while ( have_rows('item') ) : the_row(); ?>
+                <li
+                  class="text-white mb-5 font-inter text-base font-normal leading-[20.8px] flex items-center">
+                  <span class="flex mr-2.5">
+                    <img src="<?php the_sub_field('icon'); ?>" class="mr-2.5" alt="">
+                  </span>
+                  <?php the_sub_field('text'); ?>
+                </li>
+              <?php endwhile; endif; ?>
+            <?php endwhile; endif; ?>
           </ul>
-          <a href="#"
-            class="text-black-1000 inline-block hover:bg-blue-1000 hover:text-white border border-transparent font-inter text-base font-medium leading-[130%] rounded-[7px] bg-pink-1000 py-[11px] px-6">Get
-            in touch</a>
+          <a href="<?php echo $real_time_notifications['button_link']; ?>"
+            class="text-black-1000 inline-block hover:bg-blue-1000 hover:text-white border border-transparent font-inter text-base font-medium leading-[130%] rounded-[7px] bg-pink-1000 py-[11px] px-6">
+            <?php echo $real_time_notifications['button_text']; ?>
+          </a>
         </div>
       </div>
     </div>
   </section>
+
+  <?php
+    $customer_support_1 = get_field('customer_support_1');
+  ?>
   <section class="xl:py-[120px] pb-20">
     <div class="max-w-[1300px] md:px-[30px] px-[15px] mx-auto">
       <div class="flex flex-wrap">
         <div class="lg:w-1/2 w-full">
           <h2
             class="xl:text-[42px] lg:text-[32px] text-[28px] font-plus-jakarta font-bold leading-[130%] mb-2.5">
-            Customer support and
-            ticketing
-            system</h2>
-          <p class="text-base font-inter text-black-1000 leading-[130%]">At vero eos et accusamus et
-            iusto odio dignissimos ducimus qui blanditiis praesentium
-            voluptatum deleniti.</p>
+            <?php echo $customer_support_1['title']; ?>
+          </h2>
+          <p class="text-base font-inter text-black-1000 leading-[130%]">
+            <?php echo $customer_support_1['description']; ?>
+          </p>
           <ul class="mt-10 pl-4 list-disc">
-            <li>
-              <p class="text-base font-inter mb-2.5 text-black-1000 leading-[130%]">Which toil
-                and
-                pain
-                can
-                procure
-                him some great.</p>
-            </li>
-            <li>
-              <p class="text-base font-inter mb-2.5 text-black-1000 leading-[130%]">Anyone who
-                loves or
-                pursues or desires to obtain pain of itself.</p>
-            </li>
-            <li>
-              <p class="text-base font-inter  text-black-1000 leading-[130%]">Optio cumque
-                nihil
-                impedit quo minus id placeat facere.</p>
-            </li>
+            <?php if( have_rows('customer_support_1') ): while ( have_rows('customer_support_1') ) : the_row(); ?>
+              <?php if( have_rows('item') ): while ( have_rows('item') ) : the_row(); ?>
+                <li>
+                  <p class="text-base font-inter mb-2.5 text-black-1000 leading-[130%]">
+                    <?php the_sub_field('text'); ?>
+                  </p>
+                </li>
+              <?php endwhile; endif; ?>
+            <?php endwhile; endif; ?>
           </ul>
-          <a href="#"
-            class="text-black-1000 mt-[53px] inline-block hover:bg-blue-1000 hover:text-white border border-transparent font-inter text-base font-medium leading-[130%] rounded-[7px] bg-pink-1000 py-[11px] px-6">Get
-            started today</a>
+          <a href="<?php echo $customer_support_1['button_link']; ?>"
+            class="text-black-1000 mt-[53px] inline-block hover:bg-blue-1000 hover:text-white border border-transparent font-inter text-base font-medium leading-[130%] rounded-[7px] bg-pink-1000 py-[11px] px-6">
+            <?php echo $customer_support_1['button_text']; ?>
+          </a>
         </div>
         <div class="lg:w-2/4 w-full lg:mt-0 mt-12">
           <div
             class="relative xl:max-w-[497px] lg:max-w-[438px] max-w-full w-full ml-auto  after:content-['*'] after:absolute after:bg-[url('../images/gradient.svg')] after:bg-no-repeat after:bg-cover after:bg-center after:w-full after:h-full after:-top-4 after:-right-4 after:z-[1] after:rounded-[7px]">
-            <img src="images/ticket-img.png" alt="" class="relative z-10 w-full">
-            <img src="images/ticket-payment.png" alt=""
+            <img src="<?php echo $customer_support_1['image_1']; ?>" alt="" class="relative z-10 w-full">
+            <img src="<?php echo $customer_support_1['image_2']; ?>" alt=""
               class="absolute bottom-[-53px] lg:block hidden xl:left-[-42px] left-[-18px] z-10">
           </div>
         </div>
       </div>
     </div>
   </section>
+
   <section class="swiper-sec">
     <div class="max-w-[1300px] md:px-[30px] px-[15px] mx-auto">
       <div class="bg-[url('../images/slider-bg.png')] lg:py-[100px] bg-cover py-20 bg-no-repeat bg-center">
         <div class="swiper mySwiper">
           <div class="swiper-wrapper">
-            <div class="swiper-slide md:px-0 sm:px-[60px] px-[30px]">
-              <div class="text-center">
-                <img src="images/quotes.svg" alt="" class="inline-block">
-                <p
-                  class="text-2xl mt-[30px] mb-[21px] font-inter leading-[31px] text-black-1000 xl:max-w-[981px] lg:max-w-[715px] max-w-[608px] mx-auto">
-                  September how men
-                  saw tolerably
-                  two behavior arranging. She offices for
-                  highest and
-                  replied one venture pasture. Applauded no discovery in newspaper
-                  allowance
-                  am
-                  possession resolution northward.</p>
-                <img src="images/stars.svg" alt="" class="inline-block">
+            <?php if( have_rows('review_slider') ): while ( have_rows('review_slider') ) : the_row(); ?>
+              <div class="swiper-slide md:px-0 sm:px-[60px] px-[30px]">
+                <div class="text-center">
+                  <img src="<?php the_sub_field('icon'); ?>" alt="" class="inline-block">
+                  <p
+                    class="text-2xl mt-[30px] mb-[21px] font-inter leading-[31px] text-black-1000 xl:max-w-[981px] lg:max-w-[715px] max-w-[608px] mx-auto">
+                    <?php the_sub_field('text'); ?>  
+                  </p>
+                  <img src="<?php the_sub_field('star'); ?> " alt="" class="inline-block">
+                </div>
               </div>
-            </div>
-            <div class="swiper-slide md:px-0 sm:px-[60px] px-[30px]">
-              <div class="text-center">
-                <img src="images/quotes.svg" alt="" class="inline-block">
-                <p
-                  class="text-2xl mt-[30px] mb-[21px] font-inter leading-[31px] text-black-1000 xl:max-w-[981px] lg:max-w-[715px] max-w-[608px] mx-auto">
-                  Et harum quidem rerum facilis est et expedita distinctio. Nam libero
-                  tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo
-                  minus
-                  id quod maxime placeat facere possimus occur in which.</p>
-                <img src="images/stars.svg" alt="" class="inline-block">
-              </div>
-            </div>
-            <div class="swiper-slide md:px-0 sm:px-[60px] px-[30px]">
-              <div class="text-center">
-                <img src="images/quotes.svg" alt="" class="inline-block">
-                <p
-                  class="text-2xl mt-[30px] mb-[21px] font-inter leading-[31px] text-black-1000 xl:max-w-[981px] lg:max-w-[715px] max-w-[608px] mx-auto">
-                  September how men
-                  saw tolerably
-                  two behavior arranging. She offices for
-                  highest and
-                  replied one venture pasture. Applauded no discovery in newspaper
-                  allowance
-                  am
-                  possession resolution northward.</p>
-                <img src="images/stars.svg" alt="" class="inline-block">
-              </div>
-            </div>
-            <div class="swiper-slide md:px-0 sm:px-[60px] px-[30px]">
-              <div class="text-center">
-                <img src="images/quotes.svg" alt="" class="inline-block">
-                <p
-                  class="text-2xl mt-[30px] mb-[21px] font-inter leading-[31px] text-black-1000 xl:max-w-[981px] lg:max-w-[715px] max-w-[608px] mx-auto">
-                  Et harum quidem rerum facilis est et expedita distinctio. Nam libero
-                  tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo
-                  minus
-                  id quod maxime placeat facere possimus occur in which.</p>
-                <img src="images/stars.svg" alt="" class="inline-block">
-              </div>
-            </div>
+            <?php endwhile; endif; ?>
           </div>
           <div class="sm:block flex justify-center sm:mt-0 mt-10">
             <div class="swiper-button-next sm:right-5 sm:-mr-0 -mr-10 sm:absolute static"><img
-              src="images/right-arrow.svg" alt=""></div>
+              src="<?php echo get_template_directory_uri()?>/assets/images/right-arrow.svg" alt=""></div>
             <div
               class="swiper-button-prev sm:left-5 sm:-ml-0 -ml-10 sm:absolute static !after:content-['none']">
-              <img src="images/left-icon.svg" alt="">
+              <img src="<?php echo get_template_directory_uri()?>/assets/images/left-icon.svg" alt="">
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- Recent Blog Section start -->
   <section class="xl:py-[120px] md:py-20 py-[60px]">
     <div class="max-w-[1300px] md:px-[30px] px-[15px] mx-auto">
       <h4
@@ -773,7 +720,12 @@
       </div>
     </div>
   </section>
+  <!-- Recent Blog Section end -->
+
   <!-- ============= home-3-sec ============= -->
+  <?php
+    $powerful_solutions = get_field('powerful_solutions');
+  ?>
   <section>
     <div class="max-w-[1300px] md:px-[30px] px-[15px] mx-auto">
       <div
@@ -781,16 +733,12 @@
         <div class="text-center">
           <h2
             class="text-white max-w-[940px] mx-auto font-plus-jakarta 3xl:text-[50px] sm:text-[40px] text-[38px] font-bold 3xl:leading-[65px] sm:leading-[55px] leading-[45px] mb-2.5">
-            Powerful
-            solutions for
-            the modern
-            enterprise</h2>
+            <?php echo $powerful_solutions['title']; ?>
+          </h2>
           <p
             class="text-white mt-2.5 3xl:mb-12 sm:mb-10 mb-[50px] max-w-[682px] mx-auto font-inter text-base leading-[20.8px] font-normal">
-            Omnis
-            voluptas assumenda
-            est, omnis dolor repellendus. Temporibus autem quibusdam et
-            aut officiis debitis aut rerum necessitatibus saepe eveniet.</p>
+            <?php echo $powerful_solutions['description']; ?>
+          </p>
 
           <form>
             <div class="relative max-w-[470px] mx-auto">
@@ -803,332 +751,250 @@
           </form>
           <div class="sm:flex sm:text-start text-center items-center justify-center sm:mt-5 mt-[50px]">
             <ul class="flex sm:justify-start justify-center items-center mr-[22px]">
-              <li class="mr-[5px]"><img src="images/star-2.svg" class="inline-block" alt=""></li>
-              <li class="mr-[5px]"><img src="images/star-2.svg" class="inline-block" alt=""></li>
-              <li class="mr-[5px]"><img src="images/star-2.svg" class="inline-block" alt=""></li>
-              <li class="mr-[5px]"><img src="images/star-2.svg" class="inline-block" alt=""></li>
-              <li><img src="images/star-2.svg" alt=""></li>
+              <li class="mr-[5px]"><img src="<?php echo $powerful_solutions['star']; ?>" class="inline-block" alt=""></li>
+              <li class="mr-[5px]"><img src="<?php echo $powerful_solutions['star']; ?>" class="inline-block" alt=""></li>
+              <li class="mr-[5px]"><img src="<?php echo $powerful_solutions['star']; ?>" class="inline-block" alt=""></li>
+              <li class="mr-[5px]"><img src="<?php echo $powerful_solutions['star']; ?>" class="inline-block" alt=""></li>
+              <li><img src="<?php echo $powerful_solutions['star']; ?>" alt=""></li>
             </ul>
-            <p class="font-Inter  text-white text-base font-normal">Rated
-              5/5- from over 40 reviews
+            <p class="font-Inter  text-white text-base font-normal">
+              <?php echo $powerful_solutions['text']; ?>
             </p>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <?php
+    $role_based_access = get_field('role-based_access');
+    $role_left = $role_based_access['left_item'];
+    $role_right = $role_based_access['right_item'];
+  ?>
   <section class="3xl:pt-[100px] 3xl:pb-[120px] md:py-16 pt-[50px]">
     <div class="max-w-[1300px] md:px-[30px] px-[15px] mx-auto">
       <div class="flex flex-wrap md:-mx-[15px]">
         <div class="md:w-1/2 w-full md:px-[15px]">
           <h2
             class="text-black-1000 font-plus-jakarta 3xl:text-[42px] sm:text-[32px] text-[34px] mb-2.5 font-bold sm:leading-[54px] leading-10">
-            Role-based
-            access control</h2>
-          <p class="text-base text-black-1000 font-inter leading-[20.8px]">Et iusto odio dignissimos
-            ducimus qui blanditiis praesentium voluptatum deleniti
-            atque corrupti quos dolores.</p>
+            <?php echo $role_left['title']; ?>
+          </h2>
+          <p class="text-base text-black-1000 font-inter leading-[20.8px]">
+            <?php echo $role_left['description']; ?>
+          </p>
           <div
             class="bg-[url('../images/feature-box.png')] rounded-[7px] mb-[30px] 3xl:mt-10 mt-md-5 mt-10 sm:p-[50px] p-[30px] bg-no-repeat bg-center">
             <div class="text-center">
-                <h2 class="md:text-4xl text-[34px] font-plus-jakarta text-white font-bold text-wite">
-                    Data
-                    import/export</h2>
-                <img src="images/payment-card.png" alt="" class="inline-block mt-10">
+              <h2 class="md:text-4xl text-[34px] font-plus-jakarta text-white font-bold text-wite">
+                <?php echo $role_left['sub_title']; ?>
+              </h2>
+              <img src="<?php echo $role_left['image_1']; ?>" alt="" class="inline-block mt-10">
             </div>
           </div>
           <div>
-            <img src="images/control-img1.png" alt="">
+            <img src="<?php echo $role_left['image_2']; ?>" alt="">
           </div>
         </div>
         <div class="md:w-1/2 w-full md:px-[15px] md:mt-0 mt-[30px]">
           <div class="bg-gray-1000 rounded-[7px] 3xl:p-[50px] sm:p-10 p-[30px]">
-            <h6 class="text-base font-inter text-black-1000 mb-2.5">Itaque earum rerum hic tenetur a
-              sapiente
-              delectus.</h6>
+            <h6 class="text-base font-inter text-black-1000 mb-2.5">
+              <?php echo $role_right['sub_title']; ?>
+            </h6>
             <h2 class="text-black-1000 font-plus-jakarta font-bold 3xl:text-[42px] text-[32px]">
-              Real-time
-              notifications
-              and alerts</h2>
+              <?php echo $role_right['title']; ?>
+            </h2>
             <div class="sm:mt-[199px] mt-[30px]">
-              <button type="submit"
-                class="text-black-1000 mb-1 hover:bg-blue-1000 hover:text-white font-inter text-base font-medium leading-[20.8px]  bg-pink-1000 py-2.5 px-6 rounded-[7px]">Read
-                our story</button>
-              <h6 class="text-base font-inter text-black-1000 mb-2.5">Perferendis doloribus
-                asperiores repellat.</h6>
+              <a href="<?php echo $role_right['button_link']; ?>" alt=""
+                class="text-black-1000 mb-1 hover:bg-blue-1000 hover:text-white font-inter text-base font-medium leading-[20.8px]  bg-pink-1000 py-2.5 px-6 rounded-[7px]">
+                <?php echo $role_right['button_text']; ?>
+              </a>
+              <h6 class="text-base font-inter text-black-1000 mb-2.5">
+                <?php echo $role_right['bottom_text']; ?>
+              </h6>
             </div>
           </div>
           <div
             class="bg-[url('../images/feature-box-blur.png')] rounded-[7px] mb-[30px] mt-10 sm:p-[50px] p-[30px] bg-no-repeat bg-center">
             <div class="text-center">
               <h2 class="3xl:text-4xl text-[32px] font-plus-jakarta text-black font-bold text-wite">
-                Advanced
-                reporting</h2>
-              <img src="images/report.png" alt="" class="inline-block mt-10">
+                <?php echo $role_right['bottom_title']; ?>
+              </h2>
+              <img src="<?php echo $role_right['image']; ?>" alt="" class="inline-block mt-10">
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <?php
+    $secure_data = get_field('secure_data');
+  ?>
   <section class="sm:mt-0 mt-[30px]">
     <div class="max-w-[1300px] md:px-[30px] px-[15px] mx-auto">
       <div class="text-center">
         <h2
           class="3xl:text-[50px] md:text-[32px] sm:text-[40px] text-[38px] text-black-1000 font-bold 3xl:max-w-[671px] max-w-full 3xl:leading-[65px] sm:leading-[55px] leading-[45px] mx-auto font-plus-jakarta">
-          Secure
-          data encryption and
-          protection</h2>
+          <?php echo $secure_data['title']; ?>
+        </h2>
       </div>
       <div class="grid lg:grid-cols-3 md:grid-cols-2 lg:gap-[50px] gap-[30px] 3xl:mt-10 mt-5">
-        <div class="bg-gray-1000 xl:p-10 py-10 px-5 rounded-[7px]">
-          <img src="https://assets.website-files.com/64955efc4efdd0ac725b368e/6496d424dc53508436248f06_dashboard.svg"
-            alt="">
-          <h4 class="sm:text-2xl text-[22px] mt-5 mb-2.5 font-plus-jakarta font-bold text-black-1000">
-            Data import/export
-          </h4>
-          <p class="text-base font-inter text-black-1000 leading-5">Which is the same as saying through
-            shrinking from toil and pain.</p>
-        </div>
-        <div class="bg-gray-1000 xl:p-10 py-10 px-5 rounded-[7px]">
-          <img src="https://assets.website-files.com/64955efc4efdd0ac725b368e/6496d46ce1f4b7318beffca1_activity-tracker.svg"
-            alt="">
-          <h4 class="sm:text-2xl text-[22px] mt-5 mb-2.5 font-plus-jakarta font-bold text-black-1000">
-            Email integration
-          </h4>
-          <p class="text-base font-inter text-black-1000 leading-5">At vero eos et accusamus et iusto
-            odio
-            dignissimos ducimus qui.</p>
-        </div>
-        <div class="bg-gray-1000 xl:p-10 py-10 px-5 rounded-[7px]">
-          <img src="https://assets.website-files.com/64955efc4efdd0ac725b368e/6496d496b3bd11aad1dfde33_tag-setting.svg"
-              alt="">
-          <h4 class="sm:text-2xl text-[22px] mt-5 mb-2.5 font-plus-jakarta font-bold text-black-1000">
-              Task assignments
-          </h4>
-          <p class="text-base font-inter text-black-1000 leading-5">That has no annoying consequences,
-              or one who avoids a pain.</p>
-        </div>
-        <div class="bg-gray-1000 xl:p-10 py-10 px-5 rounded-[7px]">
-          <img src="https://assets.website-files.com/64955efc4efdd0ac725b368e/6496d4a7bf364319c82912d1_id-card.svg"
-            alt="">
-          <h4 class="sm:text-2xl text-[22px] mt-5 mb-2.5 font-plus-jakarta font-bold text-black-1000">
-            In-App messaging
-          </h4>
-          <p class="text-base font-inter text-black-1000 leading-5">Repudiandae sint et molestiae non
-            recusandae.</p>
-        </div>
-        <div class="bg-gray-1000 xl:p-10 py-10 px-5 rounded-[7px]">
-          <img src="https://assets.website-files.com/64955efc4efdd0ac725b368e/6496d4b1c4e9164660259961_tag.svg"
-            alt="">
-          <h4 class="sm:text-2xl text-[22px] mt-5 mb-2.5 font-plus-jakarta font-bold text-black-1000">
-            Offline access
-          </h4>
-          <p class="text-base font-inter text-black-1000 leading-5">Which of us ever undertakes laborious
-            physical exercise.</p>
-        </div>
-        <div class="bg-gray-1000 xl:p-10 py-10 px-5 rounded-[7px]">
-          <img src="https://assets.website-files.com/64955efc4efdd0ac725b368e/6496d4c05dfd5bfdeb5441a5_clip-path.svg"
-            alt="">
-          <h4 class="sm:text-2xl text-[22px] mt-5 mb-2.5 font-plus-jakarta font-bold text-black-1000">
-            Time tracking
-          </h4>
-          <p class="text-base font-inter text-black-1000 leading-5">Repudiandae sint et molestiae non
-            recusandae.</p>
-        </div>
+        <?php if( have_rows('secure_data') ): while ( have_rows('secure_data') ) : the_row(); ?>
+          <?php if( have_rows('item') ): while ( have_rows('item') ) : the_row(); ?>
+            <div class="bg-gray-1000 xl:p-10 py-10 px-5 rounded-[7px]">
+              <img src="<?php the_sub_field('icon'); ?>"
+                alt="">
+              <h4 class="sm:text-2xl text-[22px] mt-5 mb-2.5 font-plus-jakarta font-bold text-black-1000">
+                <?php the_sub_field('title'); ?>
+              </h4>
+              <p class="text-base font-inter text-black-1000 leading-5">
+                <?php the_sub_field('description'); ?>
+              </p>
+            </div>
+          <?php endwhile; endif; ?>
+        <?php endwhile; endif; ?>
       </div>
     </div>
   </section>
+  
+  <?php
+    $customer_support_tabs = get_field('customer_support_tabs');
+    $count = 0;
+  ?>
   <section class="3xl:pt-[120px] pt-16">
     <div class="max-w-[1300px] md:px-[30px] px-[15px] mx-auto">
       <div class="text-center 3xl:mb-10 md:mb-5 mb-10">
         <h2
           class="3xl:text-[42px] text-[32px] text-black-1000 font-bold 3xl:leading-[65px] md:leading-[55px] leading-[40px] mx-auto font-plus-jakarta">
-          Customer support and ticketing system</h2>
+          <?php echo $customer_support_tabs['title']; ?>
+        </h2>
       </div>
       <div>
         <ul class="flex flex-wrap justify-center" id="myTab" data-tabs-toggle="#myTabContent"
           role="tablist">
-          <li class="md:mr-[30px] mr-[15px] lg:mb-0 mb-[15px]" role="presentation">
-            <button
-              class="inline-block text-black-1100 text-base font-inter font-normal leading-[20.8px] py-2.5 bg-gray-100 px-[30px] rounded-[7px]"
-              id="profile-tab" data-tabs-target="#profile" type="button" role="tab"
-              aria-controls="profile" aria-selected="false">Marketplaces</button>
-          </li>
-          <li class="md:mr-[30px] mr-[15px] lg:mb-0 mb-[15px]" role="presentation">
-            <button
-              class="inline-block text-black-1100 text-base font-inter font-normal leading-[20.8px] bg-gray-100 py-2.5 px-[30px] rounded-[7px]"
-              id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab"
-              aria-controls="dashboard" aria-selected="false">Freelancer plaforms</button>
-          </li>
-          <li class="md:mr-[30px] mr-[15px] lg:mb-0 mb-[15px]" role="presentation">
-            <button
-              class="inline-block text-black-1100 text-base font-inter font-normal leading-[20.8px] bg-gray-100 py-2.5 px-[30px] rounded-[7px]"
-              id="settings-tab" data-tabs-target="#settings" type="button" role="tab"
-              aria-controls="settings" aria-selected="false">Affiliate networks</button>
-          </li>
-          <li role="presentation">
-            <button
-              class="inline-block text-black-1100 text-base font-inter font-normal leading-[20.8px] bg-gray-100 py-2.5 px-[30px] rounded-[7px]"
-              id="contacts-tab" data-tabs-target="#contacts" type="button" role="tab"
-              aria-controls="contacts" aria-selected="false">Business software</button>
-          </li>
+          <?php if( have_rows('customer_support_tabs') ): while ( have_rows('customer_support_tabs') ) : the_row(); ?>
+            <?php if( have_rows('item') ): while ( have_rows('item') ) : the_row(); ?>
+              <?php
+                $tab = get_sub_field('tab');
+                $tab_slug = str_replace(" ", "_", strtolower($tab));
+              ?>
+              <li class="md:mr-[30px] mr-[15px] lg:mb-0 mb-[15px]" role="presentation">
+                <button
+                  class="inline-block text-black-1100 text-base font-inter font-normal leading-[20.8px] py-2.5 bg-gray-100 px-[30px] rounded-[7px]"
+                  id="<?php echo $tab_slug; ?>-tab" data-tabs-target="#<?php echo $tab_slug; ?>" type="button" role="tab"
+                  aria-controls="<?php echo $tab; ?>" aria-selected="false"><?php echo $tab; ?></button>
+              </li>
+            <?php endwhile; endif; ?>
+          <?php endwhile; endif; ?>
         </ul>
       </div>
       <div id="myTabContent">
-        <div class="hidden  dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-          <div class="flex flex-wrap mt-12">
-            <div class="md:w-1/2 ">
-              <img src="images/tab-1.png" class="w-full object-cover object-center h-full" alt="">
-            </div>
-            <div
-              class="md:w-1/2 bg-[url('../images/shadow-1.png')] sm:p-[50px] p-[30px] bg-no-repeat bg-cover">
+        <?php if( have_rows('customer_support_tabs') ): while ( have_rows('customer_support_tabs') ) : the_row();?>
+          <?php if( have_rows('item') ): while ( have_rows('item') ) : the_row(); $count++; ?>
+            <?php
+              $tab = get_sub_field('tab');
+              $tab_slug = str_replace(" ", "_", strtolower($tab));
+            ?>
+            <div class="hidden  dark:bg-gray-800" id="<?php echo $tab_slug; ?>" role="tabpanel" aria-labelledby="<?php echo $tab_slug; ?>-tab">
+              <?php if($count % 2 == 1): ?>
+                <div class="flex flex-wrap mt-12">
+                  <div class="md:w-1/2 ">
+                    <img src="<?php the_sub_field('image'); ?>" class="w-full object-cover object-center h-full" alt="">
+                  </div>
+                  <div
+                    class="md:w-1/2 bg-[url('../images/shadow-1.png')] sm:p-[50px] p-[30px] bg-no-repeat bg-cover">
 
-              <p class="text-white font-inter text-base font-normal leading-[20.8px] ">Itaque
-                earum rerum hic tenetur a sapiente delectus.</p>
-              <h2
-                class="text-white 3xl:text-[42px] text-[32px] font-plus-jakarta font-bold 3xl:leading-[54.6px] leading-[45px] mt-2.5">
-                Real-time notifications
-                and alerts</h2>
-              <div class="xl:mt-[199px] sm:mt-32 mt-[30px]">
-                <a href="#"
-                  class="text-black-1000 inline-block hover:bg-blue-1000 hover:text-white border border-transparent font-inter text-base font-medium leading-[130%] rounded-[7px] bg-pink-1000 py-[11px] px-6">Learn
-                  more</a>
-                <p class="text-white mt-2 font-inter text-base font-normal leading-[20.8px] ">
-                  Perferendis
-                  doloribus asperiores repellat.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="hidden  dark:bg-gray-800" id="dashboard" role="tabpanel"
-          aria-labelledby="dashboard-tab">
-          <div class="flex flex-wrap mt-12">
-            <div
-                class="md:w-1/2 bg-[url('../images/shadow-1.png')] sm:p-[50px] p-[30px] bg-no-repeat bg-cover">
-                <p class="text-white font-inter text-base font-normal leading-[20.8px] ">Page when
-                  looking at its layout.
-                </p>
-                <h2
-                  class="text-white 3xl:text-[42px] text-[32px] font-plus-jakarta font-bold 3xl:leading-[54.6px] leading-[45px] mt-2.5">
-                  Automated task scheduling and workflow</h2>
-                <div class="xl:mt-[199px] sm:mt-32 mt-[30px]">
-                  <a href="#"
-                    class="text-black-1000 inline-block hover:bg-blue-1000 hover:text-white border border-transparent font-inter text-base font-medium leading-[130%] rounded-[7px] bg-pink-1000 py-[11px] px-6">Learn
-                    more</a>
-                  <p class="text-white mt-2 font-inter text-base font-normal leading-[20.8px] ">
-                    Perferendis doloribus asperiores repellat.
-                  </p>
+                    <p class="text-white font-inter text-base font-normal leading-[20.8px] ">
+                      <?php the_sub_field('sub_title'); ?>
+                    </p>
+                    <h2
+                      class="text-white 3xl:text-[42px] text-[32px] font-plus-jakarta font-bold 3xl:leading-[54.6px] leading-[45px] mt-2.5">
+                      <?php the_sub_field('title'); ?>
+                    </h2>
+                    <div class="xl:mt-[199px] sm:mt-32 mt-[30px]">
+                      <a href="<?php the_sub_field('button_link'); ?>"
+                        class="text-black-1000 inline-block hover:bg-blue-1000 hover:text-white border border-transparent font-inter text-base font-medium leading-[130%] rounded-[7px] bg-pink-1000 py-[11px] px-6">
+                        <?php the_sub_field('button_text'); ?>
+                      </a>
+                      <p class="text-white mt-2 font-inter text-base font-normal leading-[20.8px] ">
+                        <?php the_sub_field('bottom_text'); ?>
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="md:w-1/2 ">
-                <img src="images/tab-2.jpg" class="w-full object-cover object-center h-full" alt="">
-              </div>
-          </div>
-        </div>
-        <div class="hidden  dark:bg-gray-800" id="settings" role="tabpanel" aria-labelledby="settings-tab">
-          <div class="flex flex-wrap mt-12">
-            <div class="md:w-1/2 ">
-              <img src="images/tab-3.jpg" class="w-full object-cover object-center h-full" alt="">
+              <?php else: ?>
+                <div class="flex flex-wrap mt-12">
+                  <div
+                    class="md:w-1/2 bg-[url('../images/shadow-1.png')] sm:p-[50px] p-[30px] bg-no-repeat bg-cover">
+                    <p class="text-white font-inter text-base font-normal leading-[20.8px] ">
+                      <?php the_sub_field('sub_title'); ?>
+                    </p>
+                    <h2
+                      class="text-white 3xl:text-[42px] text-[32px] font-plus-jakarta font-bold 3xl:leading-[54.6px] leading-[45px] mt-2.5">
+                      <?php the_sub_field('title'); ?>
+                    </h2>
+                    <div class="xl:mt-[199px] sm:mt-32 mt-[30px]">
+                      <a href="<?php the_sub_field('button_link'); ?>"
+                        class="text-black-1000 inline-block hover:bg-blue-1000 hover:text-white border border-transparent font-inter text-base font-medium leading-[130%] rounded-[7px] bg-pink-1000 py-[11px] px-6">
+                        <?php the_sub_field('button_text'); ?>
+                      </a>
+                      <p class="text-white mt-2 font-inter text-base font-normal leading-[20.8px] ">
+                        <?php the_sub_field('bottom_text'); ?>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="md:w-1/2 ">
+                    <img src="<?php the_sub_field('image'); ?>" class="w-full object-cover object-center h-full" alt="">
+                  </div>
+                </div>
+              <?php endif; ?>
             </div>
-            <div
-              class="md:w-1/2 bg-[url('../images/shadow-1.png')] sm:p-[50px] p-[30px] bg-no-repeat bg-cover">
-
-              <p class="text-white font-inter text-base font-normal leading-[20.8px] ">
-                Sections 1.10.32 and 1.10.33 from "de Finibus.
-              </p>
-              <h2
-                class="text-white 3xl:text-[42px] text-[32px] font-plus-jakarta font-bold 3xl:leading-[54.6px] leading-[45px] mt-2.5">
-                Customer support and ticketing system</h2>
-              <div class="xl:mt-[199px] sm:mt-32 mt-[30px]">
-                <a href="#"
-                  class="text-black-1000 inline-block hover:bg-blue-1000 hover:text-white border border-transparent font-inter text-base font-medium leading-[130%] rounded-[7px] bg-pink-1000 py-[11px] px-6">Learn
-                  more</a>
-                <p class="text-white mt-2 font-inter text-base font-normal leading-[20.8px] ">
-                  Perferendis doloribus asperiores repellat.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="hidden  dark:bg-gray-800" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
-          <div class="flex flex-wrap mt-12">
-            <div
-              class="md:w-1/2 bg-[url('../images/shadow-1.png')] sm:p-[50px] p-[30px] bg-no-repeat bg-cover">
-              <p class="text-white font-inter text-base font-normal leading-[20.8px] ">
-                The standard chunk of Lorem Ipsum used.
-              </p>
-              <h2
-                class="text-white 3xl:text-[42px] text-[32px] font-plus-jakarta font-bold 3xl:leading-[54.6px] leading-[45px] mt-2.5">
-                API access for seamless integration</h2>
-              <div class="xl:mt-[199px] sm:mt-32 mt-[30px]">
-                <a href="#"
-                  class="text-black-1000 inline-block hover:bg-blue-1000 hover:text-white border border-transparent font-inter text-base font-medium leading-[130%] rounded-[7px] bg-pink-1000 py-[11px] px-6">Learn
-                  more</a>
-                <p class="text-white mt-2 font-inter text-base font-normal leading-[20.8px] ">
-                  Perferendis doloribus asperiores repellat.
-                </p>
-              </div>
-            </div>
-            <div class="md:w-1/2 ">
-              <img src="images/tab-4.jpg" class="w-full object-cover object-center h-full" alt="">
-            </div>
-          </div>
-        </div>
+          <?php endwhile; endif; ?>
+        <?php endwhile; endif; ?>        
       </div>
     </div>
   </section>
+
+  <?php
+    $advanced_reporting = get_field('advanced_reporting');
+    $count = 0;
+  ?>
   <section class="3xl:py-[120px] py-16">
     <div class="max-w-[1300px] md:px-[30px] px-[15px] mx-auto">
       <div class="flex flex-wrap items-center">
         <div class="lg:w-1/2 w-full">
           <h2
             class="3xl:text-[42px] text-[32px] font-plus-jakarta font-bold 3xl:leading-[130%] leading-[100%] mb-2.5">
-            Advanced reporting
-            and
-            insights</h2>
-          <p class="text-base font-inter text-black-1000 leading-[130%]">Saepe eveniet ut et voluptates
-            repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente
-            delectus.</p>
+            <?php echo $advanced_reporting['title']; ?>
+          </h2>
+          <p class="text-base font-inter text-black-1000 leading-[130%]">
+            <?php echo $advanced_reporting['description']; ?>
+          </p>
           <ul class="mt-10 mb-10">
-            <li
-              class="text-black-1000 mb-5 font-inter text-base font-normal leading-[20.8px] flex items-center">
-              <span class="flex mr-2.5"><img src="images/tick-icon.svg" class="mr-2.5" alt=""></span>A
-              pain that
-              produces no resultant pleasure.
-            </li>
-            <li
-              class="text-black-1000 mb-5 font-inter text-base font-normal leading-[20.8px] flex items-center">
-              <span class="flex mr-2.5"><img src="images/tick-icon.svg" class="mr-2.5"
-                alt=""></span>Except to obtain
-              some advantage from it who has any right.
-            </li>
-            <li
-              class="text-black-1000 mb-5 font-inter text-base font-normal leading-[20.8px] flex items-center">
-              <span class="flex mr-2.5"><img src="images/tick-icon.svg" class="mr-2.5"
-                alt=""></span>Pleasure
-              rationally encounter consequences that.
-            </li>
-            <li
-              class="text-black-1000 font-inter text-base font-normal leading-[20.8px] flex items-center">
-              <span class="flex mr-2.5"><img src="images/tick-icon.svg" class="mr-2.5"
-                alt=""></span>Every
-              pleasure is
-              to be welcomed and every pain avoided.
-            </li>
+            <?php if( have_rows('advanced_reporting') ): while ( have_rows('advanced_reporting') ) : the_row(); ?>
+              <?php if( have_rows('item') ): while ( have_rows('item') ) : the_row(); ?>
+                <li
+                  class="text-black-1000 mb-5 font-inter text-base font-normal leading-[20.8px] flex items-center">
+                  <span class="flex mr-2.5">
+                    <img src="<?php the_sub_field('icon'); ?>" class="mr-2.5" alt="">
+                  </span>
+                  <?php the_sub_field('text'); ?>
+                </li>
+              <?php endwhile; endif; ?>
+            <?php endwhile; endif; ?>
           </ul>
-          <a href="#"
-            class="text-black-1000 inline-block hover:bg-blue-1000 hover:text-white border border-transparent font-inter text-base font-medium leading-[130%] rounded-[7px] bg-pink-1000 py-[11px] px-6">Get
-            started today</a>
+          <a href="<?php echo $advanced_reporting['button_link']; ?>"
+            class="text-black-1000 inline-block hover:bg-blue-1000 hover:text-white border border-transparent font-inter text-base font-medium leading-[130%] rounded-[7px] bg-pink-1000 py-[11px] px-6">
+            <?php echo $advanced_reporting['button_text']; ?>
+          </a>
         </div>
         <div class="lg:w-2/4 w-full lg:mt-0 mt-12">
           <div class="relative">
             <div
               class="relative xl:max-w-[504px] lg:max-w-[404px] w-full ml-auto  after:content-'' after:absolute after:bg-[url('../images/gradient.svg')] after:bg-no-repeat after:bg-cover after:bg-center after:w-full after:h-full md:after:-top-4 after:-top-2 md:after:-right-4 after:-right-2 after:z-[1] after:rounded-[7px]">
-              <img src="images/img-2.png" alt="" class="relative w-full z-10">
+              <img src="<?php echo $advanced_reporting['image_1']; ?>" alt="" class="relative w-full z-10">
             </div>
-            <img src="images/performance-img.png" alt=""
+            <img src="<?php echo $advanced_reporting['image_2']; ?>" alt=""
               class="absolute bottom-[-53px] lg:block hidden left-[33px] z-10">
           </div>
         </div>
@@ -1136,6 +1002,9 @@
     </div>
   </section>
 
+  <?php
+    $white_labeling = get_field('white-labeling');
+  ?>
   <section class="3xl:py-[120px] md:py-16 pt-1 pb-[70px]">
     <div class="max-w-[1300px] md:px-[30px] px-[15px] mx-auto">
         <div class="flex flex-wrap items-center">
@@ -1143,9 +1012,9 @@
             <div class="relative">
               <div
                 class="relative xl:max-w-[504px] lg:max-w-[404px] w-full after:content-'' after:absolute after:bg-[url('../images/gradient.svg')] after:bg-no-repeat after:bg-cover after:bg-center after:w-full after:h-full md:after:-top-4 after:-top-2 md:after:-left-4 after:-left-2 after:z-[1] after:rounded-[7px]">
-                <img src="images/img-3.png" alt="" class="relative z-10 w-full">
+                <img src="<?php echo $white_labeling['image_1']; ?>" alt="" class="relative z-10 w-full">
               </div>
-              <img src="images/money-img.png" alt=""
+              <img src="<?php echo $white_labeling['image_2']; ?>" alt=""
                   class="absolute lg:block hidden bottom-[-53px] right-[33px] z-10">
             </div>
           </div>
@@ -1153,205 +1022,175 @@
             <div class="lg:max-w-[530px] ml-auto">
               <h2
                 class="3xl:text-[42px] text-[32px] font-plus-jakarta font-bold 3xl:leading-[130%] leading-[100%] mb-2.5">
-                White-labeling
-                and
-                branding options</h2>
-              <p class="text-base font-inter text-black-1000 leading-[130%]">Saepe eveniet ut et
-                voluptates
-                repudiandae sint et molestiae non
-                recusandae. Itaque earum rerum hic tenetur a sapiente delectus.</p>
+                <?php echo $white_labeling['title']; ?>
+              </h2>
+              <p class="text-base font-inter text-black-1000 leading-[130%]">
+                <?php echo $white_labeling['description']; ?>
+              </p>
               <div class="grid sm:grid-cols-2 sm:gap-[66px] gap-4 sm:mt-[38px] mt-[30px]">
-                <div>
-                  <img src="https://assets.website-files.com/64955efc4efdd0ac725b368e/649916442c6b5f5452bddbe1_earth.svg"
-                    alt="">
+                <?php if( have_rows('white-labeling') ): while ( have_rows('white-labeling') ) : the_row(); ?>
+                  <?php if( have_rows('item') ): while ( have_rows('item') ) : the_row(); ?>
+                    <div>
+                      <img src="<?php the_sub_field('icon'); ?>"
+                        alt="">
 
-                  <p class="text-base font-inter mt-4 text-black-1000 leading-[130%]">Which is the
-                    same
-                    as
-                    saying through shrinking from.</p>
-                </div>
-                <div>
-                  <img src="https://assets.website-files.com/64955efc4efdd0ac725b368e/64991675e527dd82ab6983a7_time.svg"
-                    alt="">
-                  <p class="text-base font-inter mt-4 text-black-1000 leading-[130%]">At vero eos
-                    et
-                    accusamus et iusto odio dignissimos ducimus</p>
-                </div>
+                      <p class="text-base font-inter mt-4 text-black-1000 leading-[130%]">
+                        <?php the_sub_field('text'); ?>
+                      </p>
+                    </div>
+                  <?php endwhile; endif; ?>
+                <?php endwhile; endif; ?>
               </div>
-              <a href="#"
-                class="text-black-1000 mt-10 inline-block hover:bg-blue-1000 hover:text-white border border-transparent font-inter text-base font-medium leading-[130%] rounded-[7px] bg-pink-1000 py-[11px] px-6">More
-                services</a>
+              <a href="<?php echo $white_labeling['button_link']; ?>"
+                class="text-black-1000 mt-10 inline-block hover:bg-blue-1000 hover:text-white border border-transparent font-inter text-base font-medium leading-[130%] rounded-[7px] bg-pink-1000 py-[11px] px-6">
+                <?php echo $white_labeling['button_text']; ?>
+              </a>
             </div>
           </div>
         </div>
     </div>
   </section>
+
+  <?php
+    $flexible_plan_options = get_field('flexible_plan_options');
+    $basic = $flexible_plan_options['basic'];
+    $pro = $flexible_plan_options['pro'];
+    $enterprise = $flexible_plan_options['enterprise'];
+  ?>
   <section class="3xl:pb-[120px] pb-16 3xl:pt-0 md:pt-8">
     <div class="max-w-[1300px] md:px-[30px] px-[15px] mx-auto">
-        <div class="text-center">
-          <h2
-            class="3xl:text-[42px] text-[32px] text-black-1000 3xl:mb-10 mb-5 font-bold max-w-[671px] 3xl:leading-[65px] leading-[55px] mx-auto font-plus-jakarta">
-            Flexible plan options</h2>
+      <div class="text-center">
+        <h2
+          class="3xl:text-[42px] text-[32px] text-black-1000 3xl:mb-10 mb-5 font-bold max-w-[671px] 3xl:leading-[65px] leading-[55px] mx-auto font-plus-jakarta">
+          <?php echo $flexible_plan_options['title']; ?>
+        </h2>
+      </div>
+      <div class="grid lg:grid-cols-3 gap-[30px]">
+        <div class="h-full bg-gray-1000">
+          <div class="h-full">
+            <div class="bg-card-bg rounded-tl-[7px] rounded-tr-[7px] py-[30px] text-center">
+              <h4
+                class="text-black-1000 mb-4 leading-[39px] sm:text-[30px] text-[26px] font-plus-jakarta font-bold">
+                <?php echo $basic['title']; ?>
+              </h4>
+              <h3
+                class="sm:text-4xl text-[30px] text-black-1000 font-plus-jakarta font-bold leading-[32px]">
+                <?php echo $basic['price']; ?>
+                <span class="text-base font-inter font-normal"> /
+                  month</span>
+              </h3>
+            </div>
+            <div class="bg-gray-1000 xl:p-10 p-5 lg:min-h-[330px] min-h-auto">
+              <ul class="">
+                <?php if( have_rows('flexible_plan_options') ): while ( have_rows('flexible_plan_options') ) : the_row(); ?>
+                  <?php if( have_rows('basic') ): while ( have_rows('basic') ) : the_row(); ?>
+                    <?php if( have_rows('item') ): while ( have_rows('item') ) : the_row(); ?>
+                      <li
+                        class="text-black-1000 mb-2.5 font-inter text-base font-normal leading-[20.8px] flex items-center">
+                        <span class="flex mr-2.5"><img src="<?php echo get_template_directory_uri()?>/assets/images/tick-icon.svg" class="mr-2.5"
+                          alt=""></span>
+                        <?php the_sub_field('text'); ?>
+                      </li>
+                    <?php endwhile; endif; ?>
+                  <?php endwhile; endif; ?>
+                <?php endwhile; endif; ?>
+              </ul>
+              <a href="<?php echo $basic['button_link']; ?>"
+                class="text-black-1000 mt-[30px] inline-block hover:bg-blue-1000 hover:text-white border border-transparent font-inter text-base font-medium leading-[130%] rounded-[7px] bg-pink-1000 py-[11px] px-6">
+                <?php echo $basic['button_text']; ?>
+              </a>
+            </div>
+          </div>
         </div>
-        <div class="grid lg:grid-cols-3 gap-[30px]">
-            <div class="h-full bg-gray-1000">
-              <div class="h-full">
-                <div class="bg-card-bg rounded-tl-[7px] rounded-tr-[7px] py-[30px] text-center">
-                  <h4
-                    class="text-black-1000 mb-4 leading-[39px] sm:text-[30px] text-[26px] font-plus-jakarta font-bold">
-                    Basic
-                    Plan
-                  </h4>
-                  <h3
-                    class="sm:text-4xl text-[30px] text-black-1000 font-plus-jakarta font-bold leading-[32px]">
-                    $0
-                    <span class="text-base font-inter font-normal"> /
-                      month</span>
-                  </h3>
-                </div>
-                <div class="bg-gray-1000 xl:p-10 p-5 lg:min-h-[330px] min-h-auto">
-                  <ul class="">
-                    <li
-                      class="text-black-1000 mb-2.5 font-inter text-base font-normal leading-[20.8px] flex items-center">
-                      <span class="flex mr-2.5"><img src="images/tick-icon.svg" class="mr-2.5"
-                        alt=""></span>
-                      Basic reporting and analytics
-                  </li>
-                    <li
-                      class="text-black-1000 mb-2.5 font-inter text-base font-normal leading-[20.8px] flex items-center">
-                      <span class="flex mr-2.5"><img src="images/tick-icon.svg" class="mr-2.5"
-                        alt=""></span>
-                      Limited number of users
-                    </li>
-                    <li
-                      class="text-black-1000 mb-2.5 font-inter text-base font-normal leading-[20.8px] flex items-center">
-                      <span class="flex mr-2.5"><img src="images/tick-icon.svg" class="mr-2.5"
-                        alt=""></span>Basic
-                      customer support
-                    </li>
-                    <li
-                      class="text-black-1000 font-inter text-base font-normal leading-[20.8px] flex items-center">
-                      <span class="flex mr-2.5"><img src="images/tick-icon.svg" class="mr-2.5"
-                        alt=""></span>Standard
-                      functionality
-                    </li>
-                  </ul>
-                  <a href="#"
-                    class="text-black-1000 mt-[30px] inline-block hover:bg-blue-1000 hover:text-white border border-transparent font-inter text-base font-medium leading-[130%] rounded-[7px] bg-pink-1000 py-[11px] px-6">Get
-                    started</a>
-                </div>
-              </div>
+        <div class="h-full bg-gray-1000">
+          <div class="h-full">
+            <div class="bg-card-bg rounded-tl-[7px] rounded-tr-[7px] py-[30px] text-center">
+              <h4
+                class="text-black-1000 mb-4 leading-[39px] sm:text-[30px] text-[26px] font-plus-jakarta font-bold">
+                <?php echo $pro['title']; ?>
+              </h4>
+              <h3
+                class="sm:text-4xl text-[30px] text-black-1000 font-plus-jakarta font-bold leading-[32px]">
+                <?php echo $pro['price']; ?>
+                <span class="text-base font-inter font-normal"> /
+                  month</span>
+              </h3>
             </div>
-            <div class="h-full bg-gray-1000">
-              <div class="h-full">
-                <div class="bg-card-bg rounded-tl-[7px] rounded-tr-[7px] py-[30px] text-center">
-                  <h4
-                    class="text-black-1000 mb-4 leading-[39px] sm:text-[30px] text-[26px] font-plus-jakarta font-bold">
-                    Pro plan
-
-                  </h4>
-                  <h3
-                    class="sm:text-4xl text-[30px] text-black-1000 font-plus-jakarta font-bold leading-[32px]">
-                    $49
-                    <span class="text-base font-inter font-normal"> /
-                      month</span>
-                    </h3>
-                </div>
-                <div class="bg-gray-1000 xl:p-10 p-5 lg:min-h-[330px] min-h-auto">
-                  <ul class="">
-                    <li
-                      class="text-black-1000 mb-2.5 font-inter text-base font-normal leading-[20.8px] flex items-center">
-                      <span class="flex mr-2.5"><img src="images/tick-icon.svg" class="mr-2.5"
-                        alt=""></span>
-                      Enterprise-grade security and
-                      compliance
-                    </li>
-                    <li
-                      class="text-black-1000 mb-2.5 font-inter text-base font-normal leading-[20.8px] flex items-center">
-                      <span class="flex mr-2.5"><img src="images/tick-icon.svg" class="mr-2.5"
-                        alt=""></span>
-                      Custom SLAs (Service Level
-                      Agreements)
-                    </li>
-                    <li
-                      class="text-black-1000 mb-2.5 font-inter text-base font-normal leading-[20.8px] flex items-center">
-                      <span class="flex mr-2.5"><img src="images/tick-icon.svg" class="mr-2.5"
-                        alt=""></span>
-                      Advanced data analytics and insights
-                    </li>
-                    <li
-                      class="text-black-1000 font-inter text-base font-normal leading-[20.8px] flex items-center">
-                      <span class="flex mr-2.5"><img src="images/tick-icon.svg" class="mr-2.5"
-                        alt=""></span>Scalability
-                      for high-volume usage
-                    </li>
-                  </ul>
-                  <a href="#"
-                    class="text-black-1000 mt-[30px] inline-block hover:bg-blue-1000 hover:text-white border border-transparent font-inter text-base font-medium leading-[130%] rounded-[7px] bg-pink-1000 py-[11px] px-6">Get
-                    started</a>
-                </div>
-              </div>
+            <div class="bg-gray-1000 xl:p-10 p-5 lg:min-h-[330px] min-h-auto">
+              <ul class="">
+                <?php if( have_rows('flexible_plan_options') ): while ( have_rows('flexible_plan_options') ) : the_row(); ?>
+                  <?php if( have_rows('pro') ): while ( have_rows('pro') ) : the_row(); ?>
+                    <?php if( have_rows('item') ): while ( have_rows('item') ) : the_row(); ?>
+                      <li
+                        class="text-black-1000 mb-2.5 font-inter text-base font-normal leading-[20.8px] flex items-center">
+                        <span class="flex mr-2.5"><img src="<?php echo get_template_directory_uri()?>/assets/images/tick-icon.svg" class="mr-2.5"
+                          alt=""></span>
+                        <?php the_sub_field('text'); ?>
+                      </li>
+                    <?php endwhile; endif; ?>
+                  <?php endwhile; endif; ?>
+                <?php endwhile; endif; ?>
+              </ul>
+              <a href="<?php echo $pro['button_link']; ?>"
+                class="text-black-1000 mt-[30px] inline-block hover:bg-blue-1000 hover:text-white border border-transparent font-inter text-base font-medium leading-[130%] rounded-[7px] bg-pink-1000 py-[11px] px-6">
+                <?php echo $pro['button_text']; ?>
+              </a>
             </div>
-            <div class="h-full bg-gray-1000">
-              <div class="h-full">
-                <div class="bg-card-bg rounded-tl-[7px] rounded-tr-[7px] py-[30px] text-center">
-                  <h4
-                    class="text-black-1000 mb-4 leading-[39px] sm:text-[30px] text-[26px] font-plus-jakarta font-bold">
-                    Enterprise Plan
-                  </h4>
-                  <h3
-                    class="sm:text-4xl text-[30px] text-black-1000 font-plus-jakarta font-bold leading-[32px]">
-                    $99
-                    <span class="text-base font-inter font-normal"> /
-                      month</span>
-                  </h3>
-                </div>
-                <div class="bg-gray-1000 xl:p-10 p-5 lg:min-h-[330px] min-h-auto">
-                  <ul class="">
-                    <li
-                      class="text-black-1000 mb-2.5 font-inter text-base font-normal leading-[20.8px] flex items-center">
-                      <span class="flex mr-2.5"><img src="images/tick-icon.svg" class="mr-2.5"
-                        alt=""></span>
-                      Integration with third-party tools
-                    </li>
-                    <li
-                      class="text-black-1000 mb-2.5 font-inter text-base font-normal leading-[20.8px] flex items-center">
-                      <span class="flex mr-2.5"><img src="images/tick-icon.svg" class="mr-2.5"
-                        alt=""></span>
-                      Advanced reporting and analytics
-                    </li>
-                    <li
-                      class="text-black-1000 mb-2.5 font-inter text-base font-normal leading-[20.8px] flex items-center">
-                      <span class="flex mr-2.5"><img src="images/tick-icon.svg" class="mr-2.5"
-                        alt=""></span>Customizable
-                      branding options
-                    </li>
-                    <li
-                      class="text-black-1000 font-inter text-base font-normal leading-[20.8px] flex items-center">
-                      <span class="flex mr-2.5"><img src="images/tick-icon.svg" class="mr-2.5"
-                        alt=""></span>Priority
-                      customer support
-                    </li>
-                  </ul>
-                  <a href="#"
-                      class="text-black-1000 mt-[30px] inline-block hover:bg-blue-1000 hover:text-white border border-transparent font-inter text-base font-medium leading-[130%] rounded-[7px] bg-pink-1000 py-[11px] px-6">Get
-                      started</a>
-                </div>
-              </div>
-            </div>
+          </div>
         </div>
+        <div class="h-full bg-gray-1000">
+          <div class="h-full">
+            <div class="bg-card-bg rounded-tl-[7px] rounded-tr-[7px] py-[30px] text-center">
+              <h4
+                class="text-black-1000 mb-4 leading-[39px] sm:text-[30px] text-[26px] font-plus-jakarta font-bold">
+                <?php echo $enterprise['title']; ?>
+              </h4>
+              <h3
+                class="sm:text-4xl text-[30px] text-black-1000 font-plus-jakarta font-bold leading-[32px]">
+                <?php echo $enterprise['price']; ?>
+                <span class="text-base font-inter font-normal"> /
+                  month</span>
+              </h3>
+            </div>
+            <div class="bg-gray-1000 xl:p-10 p-5 lg:min-h-[330px] min-h-auto">
+              <ul class="">
+                <?php if( have_rows('flexible_plan_options') ): while ( have_rows('flexible_plan_options') ) : the_row(); ?>
+                  <?php if( have_rows('enterprise') ): while ( have_rows('enterprise') ) : the_row(); ?>
+                    <?php if( have_rows('item') ): while ( have_rows('item') ) : the_row(); ?>
+                      <li
+                        class="text-black-1000 mb-2.5 font-inter text-base font-normal leading-[20.8px] flex items-center">
+                        <span class="flex mr-2.5"><img src="<?php echo get_template_directory_uri()?>/assets/images/tick-icon.svg" class="mr-2.5"
+                          alt=""></span>
+                        <?php the_sub_field('text'); ?>
+                      </li>
+                    <?php endwhile; endif; ?>
+                  <?php endwhile; endif; ?>
+                <?php endwhile; endif; ?>
+              </ul>
+              <a href="<?php echo $enterprise['button_link']; ?>"
+                class="text-black-1000 mt-[30px] inline-block hover:bg-blue-1000 hover:text-white border border-transparent font-inter text-base font-medium leading-[130%] rounded-[7px] bg-pink-1000 py-[11px] px-6">
+                <?php echo $enterprise['button_text']; ?>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
+
+  <?php
+    $request = get_field('request');
+    $count = 0;
+  ?>
   <section class="pb-[120px]">
     <div class="max-w-[1170px] mx-auto lg:px-[30px] md:px-5 px-[15px]">
       <div class="text-center">
         <h2
           class="3xl:text-[50px] text-[32px] text-black-1000 font-bold 3xl:leading-[65px] md:leading-[55px] leading-[40px] mx-auto font-plus-jakarta">
-          Request a demo of Saano
+          <?php echo $request['title']; ?>
         </h2>
-        <p class="text-base font-inter text-black-1000 leading-[130%]">Road and the must for of not with
-          client
-
+        <p class="text-base font-inter text-black-1000 leading-[130%]">
+          <?php echo $request['description']; ?>
         </p>
       </div>
       <div class="flex flex-wrap mt-12 ">
@@ -1383,47 +1222,44 @@
         <div
           class="md:w-1/2 w-full bg-[url('../images/contact-bg.png')] flex items-center justify-center flex-col sm:p-[50px] p-[30px] bg-no-repeat bg-cover text-center">
 
-          <p class="text-black-1000 font-inter text-xl font-normal leading-[1.3em] ">Affronting
-            imprudence
-            do he he everything.
-            Sex lasted dinner wanted indeed wished
-            outlaw. Far advanced settling say finished
-            raillery. Offered chiefly farther of my no colonel
-            shyness. Such on help ye some door if in.
-            Laughter proposal laughing.</p>
+          <p class="text-black-1000 font-inter text-xl font-normal leading-[1.3em] ">
+            <?php echo $request['text']; ?>
+          </p>
           <ul class="flex items-center justify-center mt-[30px]">
-            <li><img src="https://assets.website-files.com/64955efc4efdd0ac725b368e/6496b59b63a7acc3383abae3_team-01.jpg"
-                    class="rounded-full w-[50px] h-[50px]"></li>
+            <li>
+              <img src="<?php echo $request['avatar']; ?>" class="rounded-full w-[50px] h-[50px]">
+            </li>
             <li class="ml-4 text-start">
-                <h6 class="text-lg font-plus-jakarta font-bold ">Louis Crawford</h6>
-                <p class="text-base font-inter text-black leading-[1.3em]">Client of WBS</p>
+              <h6 class="text-lg font-plus-jakarta font-bold "><?php echo $request['name']; ?></h6>
+              <p class="text-base font-inter text-black leading-[1.3em]"><?php echo $request['role']; ?></p>
             </li>
           </ul>
-          <h6 class="text-lg font-plus-jakarta font-bold mt-10 mb-2.5">Currently working with 100+
-            companies</h6>
+          <h6 class="text-lg font-plus-jakarta font-bold mt-10 mb-2.5">
+            <?php echo $request['counts_text']; ?>
+          </h6>
           <div class="flex items-center justify-center">
-            <div>
-              <img src="https://assets.website-files.com/64955efc4efdd0ac725b368e/64968f87c3b0b9b457231822_client-10.svg"
-                class="h-[60px] align-middle" alt="">
-            </div>
-            <div>
-              <img src="https://assets.website-files.com/64955efc4efdd0ac725b368e/64968f044429d94999cc3659_client-02.svg"
-                class="h-[60px] align-middle" alt="">
-            </div>
+            <?php if( have_rows('request') ): while ( have_rows('request') ) : the_row(); ?>
+              <?php if( have_rows('logo') ): while ( have_rows('logo') ) : the_row(); $count++; ?>
+                <?php if ($count < 3): ?>
+                  <div>
+                    <img src="<?php the_sub_field('icon'); ?>"
+                      class="h-[60px] align-middle" alt="">
+                  </div>
+                <?php endif;?>
+              <?php endwhile; endif; ?>
+            <?php endwhile; endif; $count=0; ?>
           </div>
           <div class="flex items-center justify-center">
-            <div>
-              <img src="https://assets.website-files.com/64955efc4efdd0ac725b368e/64968f0bdf760fb08ef8497f_client-03.svg"
-                class="h-[60px] align-middle" alt="">
-            </div>
-            <div>
-              <img src="https://assets.website-files.com/64955efc4efdd0ac725b368e/64968f1289ee45897f34531d_client-04.svg"
-                  class="h-[60px] align-middle" alt="">
-            </div>
-            <div>
-              <img src="https://assets.website-files.com/64955efc4efdd0ac725b368e/64968f251b3f54a9b383111d_client-06.svg"
-                class="h-[60px] align-middle" alt="">
-            </div>
+            <?php if( have_rows('request') ): while ( have_rows('request') ) : the_row(); ?>
+              <?php if( have_rows('logo') ): while ( have_rows('logo') ) : the_row(); $count++; ?>
+                <?php if ($count > 2): ?>
+                  <div>
+                    <img src="<?php the_sub_field('icon'); ?>"
+                      class="h-[60px] align-middle" alt="">
+                  </div>
+                <?php endif;?>
+              <?php endwhile; endif; ?>
+            <?php endwhile; endif; $count=0; ?>
           </div>
         </div>
       </div>
