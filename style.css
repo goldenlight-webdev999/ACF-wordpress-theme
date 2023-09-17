@@ -3245,6 +3245,51 @@ input:checked + .toggle-bg {
   --tw-ring-color: rgb(31 41 55 / var(--tw-ring-opacity));
 }
 
+/** 
+wpcf7-form
+**/
+.wpcf7-form .wpcf7-form-control {
+  --tw-text-opacity: 1;
+  --tw-bg-opacity: 1;
+  --tw-border-opacity: 1;
+  border-radius: 7px;
+  border-width: 1px;
+  border-color: rgb(243 241 244 / var(--tw-border-opacity));
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+  font-family: Inter;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+  margin-top: 5px;
+}
+
+.wpcf7-form .wpcf7-form-control.contact-submit-btn {
+  cursor: pointer;
+  --tw-text-opacity: 1;
+  --tw-bg-opacity: 1;
+  --tw-border-opacity: 1;
+  padding-top: 11px;
+  padding-bottom: 11px;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  border-color: transparent;
+  color: rgb(14 2 30 / var(--tw-text-opacity));
+  background-color: rgb(80 229 250 / var(--tw-bg-opacity));
+}
+
+.wpcf7-form .wpcf7-form-control.contact-submit-btn:hover {
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+  background-color: rgb(46 0 104 / var(--tw-bg-opacity));
+}
+
+.wpcf7 .screen-reader-response {
+  display: none;
+}
+
 @media (min-width: 576px) {
   .sm\:absolute {
     position: absolute;

@@ -661,62 +661,41 @@
         Our
         recent blog</h4>
       <div class="grid md:grid-cols-3 gap-[30px]">
-        <div>
-          <a href="#">
-            <img src="images/card-img1.png" class="w-full" alt="">
-            <div class="bg-gray-1000 p-5 rounded-bl-sm rounded-br-sm">
-              <h6 class="text-black-1000 font-inter text-base mb-2.5 leading-[20.8px]">Design
-              </h6>
-              <h4
-                class="xl:text-2xl md:text-xl text-2xl text-black-1000 font-bold mb-[30px] leading-[31.2px]">
-                Skills that
-                you
-                can learn
-                from
-                business</h4>
-              <a href="#"
-                class="text-base font-inter text-black-1000 flex items-center leading-5">Read
-                more<img src="images/arrow.svg" class="ml-2.5" alt=""></a>
-            </div>
-          </a>
-        </div>
-        <div>
-          <a href="#">
-            <img src="images/card-img2.png" class="w-full" alt="">
-            <div class="bg-gray-1000 p-5 rounded-bl-sm rounded-br-sm">
-              <h6 class="text-black-1000 font-inter text-base mb-2.5 leading-[20.8px]">Design
-              </h6>
-              <h4
-                class="xl:text-2xl md:text-xl text-2xl text-black-1000 font-bold mb-[30px] leading-[31.2px]">
-                Best
-                pinterest
-                boards for
-                learning about</h4>
-              <a href="#"
-                class="text-base font-inter text-black-1000 flex items-center leading-5">Read
-                more<img src="images/arrow.svg" class="ml-2.5" alt=""></a>
-            </div>
-          </a>
-        </div>
-        <div>
-          <a href="#">
-            <img src="images/card-img3.png" class="w-full" alt="">
-            <div class="bg-gray-1000 p-5 rounded-bl-sm rounded-br-sm">
-              <h6 class="text-black-1000 font-inter text-base mb-2.5 leading-[20.8px]">Mobile
-                app
-              </h6>
-              <h4
-                class="xl:text-2xl md:text-xl text-2xl text-black-1000 font-bold mb-[30px] leading-[31.2px]">
-                Bad habits
-                that
-                people in the
-                industry need</h4>
-              <a href="#"
-                class="text-base font-inter text-black-1000 flex items-center leading-5">Read
-                more<img src="images/arrow.svg" class="ml-2.5" alt=""></a>
-            </div>
-          </a>
-        </div>
+        <?php 
+          $recent_posts = wp_get_recent_posts(array(
+            'numberposts' => 3, // Number of recent posts thumbnails to display
+            'post_status' => 'publish' // Show only the published posts
+          ));
+          foreach( $recent_posts as $post_item ) : ?>
+          <div>
+            <?php
+              $post_categories = wp_get_post_categories( $post_item['ID'], array( 'fields' => 'all' ) );
+            ?>
+            <a href="<?php echo get_permalink($post_item['ID']); ?>">
+              <?php echo get_the_post_thumbnail($post_item['ID'], 'post-thumbnail', array( 'class' => 'w-full' )); ?>
+              <div class="bg-gray-1000 p-5 rounded-bl-sm rounded-br-sm">
+                <?php if (count($post_categories) > 0): ?>
+                  <?php 
+                    // $cat_link = get_site_url()."/".$post_categories[0]->slug;
+                    $cat_name = $post_categories[0]->name;
+                  ?>
+                  <h6 class="text-black-1000 font-inter text-base mb-2.5 leading-[20.8px]">
+                    <?php echo $cat_name; ?>
+                  </h6>
+                <?php endif; ?>
+                <h4
+                  class="xl:text-2xl md:text-xl text-2xl text-black-1000 font-bold mb-[30px] leading-[31.2px]">
+                  <?php echo $post_item['post_title'] ?>  
+                </h4>
+                <div
+                  class="text-base font-inter text-black-1000 flex items-center leading-5">
+                  Read more
+                  <img src="<?php echo get_template_directory_uri()?>/assets/images/arrow.svg" class="ml-2.5" alt="">
+                </div>
+              </div>
+            </a>
+          </div>
+        <?php endforeach; ?>
       </div>
     </div>
   </section>
@@ -1198,26 +1177,7 @@
           class="md:w-1/2 w-full bg-[url('../images/contact-shadow.png')] sm:p-[50px] p-[30px] rounded-tr-[7px] rounded-br-[7px] bg-no-repeat bg-cover">
           <h4 class="text-2xl text-white font-plus-jakarta font-bold mb-10">Powering world-class companies
           </h4>
-          <form>
-            <div class="input-group mb-5"><label for="Name"
-              class="text-white text-base block font-inter mb-[5px]">Name</label><input
-              type="text"
-              class="h-14 text-black py-2.5 px-5  font-inter text-base bg-gray-100 border border-gray-1000 rounded-[7px] w-full placeholder:text-black"
-              name="Name" placeholder="Enter your name"></div>
-            <div class="input-group mb-5"><label for="Name"
-                class="text-white text-base block font-inter mb-[5px]">Email</label><input
-                type="text"
-                class="h-14 text-black py-2.5 px-5  font-inter text-base bg-gray-100 border border-gray-1000 rounded-[7px] w-full placeholder:text-black"
-                name="Name" placeholder="Your email"></div>
-            <div class="input-group mb-5"><label for="Name"
-                class="text-white text-base block font-inter mb-[5px]">Message
-              </label><textarea type="text" rows="6"
-                class=" text-black py-2.5 px-5  font-inter text-base bg-gray-100 border border-gray-1000 rounded-[7px] w-full placeholder:text-black"
-                name="Name" placeholder="How can we help?"></textarea></div>
-            <a href="#"
-              class="text-black-1000 inline-block hover:bg-blue-1000 hover:text-white border border-transparent font-inter text-base font-medium leading-[130%] rounded-[7px] bg-pink-1000 py-[11px] px-6">Request
-              demo</a>
-          </form>
+          <?php echo do_shortcode('[contact-form-7 id="d4a7c52" title="Powering world-class companies"]'); ?>
         </div>
         <div
           class="md:w-1/2 w-full bg-[url('../images/contact-bg.png')] flex items-center justify-center flex-col sm:p-[50px] p-[30px] bg-no-repeat bg-cover text-center">
